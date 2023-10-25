@@ -1,12 +1,16 @@
-import Formulario from './components/Formulario';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import Formulario from './components/Formulario/Formulario';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Formulario />
-      </header>
-    </div>
+    <BrowserRouter>
+      <RecoilRoot>
+        <Routes>
+          <Route path="/" Component={Formulario} />
+        </Routes>
+      </RecoilRoot>
+    </BrowserRouter>
   );
 }
 
