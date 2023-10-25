@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Formulario from './Formulario';
+import { RecoilRoot } from 'recoil';
 
 test('Quando o input estiver vazio, não é possivel adicionar novos participantes.', () => {
   render(<Formulario />);
@@ -18,7 +19,11 @@ test('Quando o input estiver vazio, não é possivel adicionar novos participant
 });
 
 test('adicionar um participante caso exista um nome preenchido', () => {
-  render(<Formulario />);
+  render(
+    <RecoilRoot>
+      <Formulario />
+    </RecoilRoot>
+  );
   // encontrar no DOM o input
   const input = screen.getByPlaceholderText('Insira os nomes dos participante');
   // encontrar o botão
@@ -35,4 +40,12 @@ test('adicionar um participante caso exista um nome preenchido', () => {
   expect(input).toHaveFocus();
   // garantir que o input não tenha um valor
   expect(input).toHaveValue('');
+});
+
+test('nomes duplicados não podem ser adicionados na lista', () => {
+  render(
+    <RecoilRoot>
+      <Formulario />
+    </RecoilRoot>
+  );
 });
